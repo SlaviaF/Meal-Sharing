@@ -71,10 +71,9 @@ router.get("/:id", async (request, response) => {
       response.status(400).json({ error: "MealId must be an integer" })
       return;
     }
-    const meals = await knex('meals');
-    const findID = meals.find(meal => meal.id == mealID);
-    response.json(findID);
-
+    const mealWithId = await knex('meals')
+      .where("meals.id", "=", mealID)
+    response.json(mealWithId);
 
   } catch (error) {
     console.log(error)
@@ -117,7 +116,6 @@ router.delete("/:id", async (request, response) => {
     .delete()
     .where({ id: mealId });
 });
-
 
 
 module.exports = router;
