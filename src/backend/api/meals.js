@@ -60,7 +60,7 @@ router.get("/", async (request, response) => {
   }
 
   catch (error) {
-    console.log(error);
+    response.status(500).send({ error: "Internal Server Error." });
   }
 });
 
@@ -76,45 +76,55 @@ router.get("/:id", async (request, response) => {
     response.json(mealWithId);
 
   } catch (error) {
-    console.log(error)
+    response.status(500).send({ error: "Internal Server Error." });
   }
 });
 
 router.post("/", async (request, response) => {
-
-  const insertedMeal = await knex("meals")
-    .insert({
-      title: request.body.title,
-      description: request.body.description,
-      location: request.body.location,
-      event_day: request.body.event_day,
-      max_reservations: request.body.max_reservations,
-      price: request.body.price,
-      created_date: request.body.created_date
-    })
-  response.json(insertedMeal)
-
+  try {
+    const insertedMeal = await knex("meals")
+      .insert({
+        title: request.body.title,
+        description: request.body.description,
+        location: request.body.location,
+        event_day: request.body.event_day,
+        max_reservations: request.body.max_reservations,
+        price: request.body.price,
+        created_date: request.body.created_date
+      })
+    response.json(insertedMeal)
+  } catch (error) {
+    response.status(500).send({ error: "Internal Server Error." });
+  }
 });
 router.put("/:id", async (request, response) => {
-  const mealId = parseInt(request.params.id);
-  const updateMeal = await knex('meals').where({ id: mealId })
-    .update({
-      title: request.body.title,
-      description: request.body.description,
-      location: request.body.location,
-      event_day: request.body.event_day,
-      max_reservations: request.body.max_reservations,
-      price: request.body.price,
-      created_date: request.body.created_date
-    })
-  response.json(updateMeal);
+  try {
+    const mealId = parseInt(request.params.id);
+    const updateMeal = await knex('meals').where({ id: mealId })
+      .update({
+        title: request.body.title,
+        description: request.body.description,
+        location: request.body.location,
+        event_day: request.body.event_day,
+        max_reservations: request.body.max_reservations,
+        price: request.body.price,
+        created_date: request.body.created_date
+      })
+    response.json(updateMeal);
+  } catch (error) {
+    response.status(500).send({ error: "Internal Server Error." });
+  }
 });
 
 router.delete("/:id", async (request, response) => {
-  const mealId = parseInt(request.params.id);
-  const deleteMeal = await knex('meals')
-    .delete()
-    .where({ id: mealId });
+  try {
+    const mealId = parseInt(request.params.id);
+    const deleteMeal = await knex('meals')
+      .delete()
+      .where({ id: mealId });
+  } catch (error) {
+    response.status(500).send({ error: "Internal Server Error." });
+  }
 });
 
 
