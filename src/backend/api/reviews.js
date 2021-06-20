@@ -15,6 +15,7 @@ router.get("/", async (request, response) => {
 
 router.post("/", async (request, response) => {
     try {
+        console.log(request.body)
         const insertedReviews = await knex("reviews")
             .insert({
                 title: request.body.title,

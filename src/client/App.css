@@ -1,3 +1,135 @@
 * {
     box-sizing: border-box;
 }
+/* appa*/
+.app-container{
+        padding: 0 10% 0 10%;
+}
+/* navbar */
+.nav-main{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(0, 0, 0);
+    padding: 0 5% 0 5%;
+    width:100vw;
+    position:fixed;
+    z-index: 1; 
+    margin-top: 0;
+    height:100px;
+}
+
+
+.nav-ul{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:600px;
+
+
+}
+/*the Link in react router works as an a tag*/
+.nav-ul a{
+    color:rgb(255, 255, 255);
+    text-decoration:none;
+}
+
+.nav-ul li{
+    text-decoration:none;
+    color:white;
+}
+
+.brand{
+    font-family: 'Dancing Script', cursive;
+    font-weight: 800;
+    font-size: 40px;
+    color:white;
+  
+}
+
+/*Home*/
+.center-content{
+    height: 100vh;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    height:100vh;
+    padding: 0 30%;
+
+}
+
+.home{
+    background-image: url('/public/images/bg.jpg');
+}
+
+.home h3{
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+
+
+}
+
+/*about*/
+
+
+/*Meals*/
+
+
+.common-container{
+    width: 95%;
+    margin:0 auto;
+    padding:6em;
+
+}
+.meals-container h1{
+    padding-top:0;
+    margin-top:0;
+}
+.meals-container{
+    padding-top:5em;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    
+
+}
+.meal_title{
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5em;
+}
+.meal_display p{
+    font-size: 15px;
+    padding-bottom: 0;
+}   
+.meal_items{
+    width:350px;
+    margin-bottom:20px;
+    padding:2em;
+    box-shadow: 0 8px 9px -6px rgb(181, 174, 174);
+}
+
+.meal_items:hover{
+    box-shadow: 0 12px 9px -6px rgb(181, 174, 174);
+    cursor: pointer;
+
+}
+
+
+/*findMeal*/
+.findMeal{
+    color:black;
+    border:3px solid rgb(151, 16, 16);
+
+    height:100vh;
+}
+
+@media screen and (max-width: 600px) {
+    .center-content{
+        padding-top: 40%;
+        padding-right:20%;
+    }
+}

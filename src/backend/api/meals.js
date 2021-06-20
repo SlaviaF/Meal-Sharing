@@ -4,7 +4,7 @@ const router = express.Router();
 const knex = require("../database");
 
 router.get("/", async (request, response) => {
-  try {
+
     if ("maxPrice" in request.query) {
       const maxPrice = parseFloat(request.query.maxPrice)
       if (isNaN(maxPrice)) {
@@ -15,20 +15,6 @@ router.get("/", async (request, response) => {
         .where("price", "<=", maxPrice)
       response.json(MaxPriceMeals);
       return
-    }
-    else if ("availableReservations" in request.query) {
-      const availableReservations = request.query.availableReservations;
-      if (availableReservations == "true") {
-
-        const mealswithAvailableReservation = await knex("meals")
-          .select("meals.id", "meals.title", "meals.max_reservations ")
-          .sum({ total_reserved: 'reservations.number_of_guests' })
-          .leftJoin("reservations", "meals.id", "reservations.meal_id")
-          .groupBy("meals.title")
-          .having("meals.max_reservations", ">", "total_reserved")
-        response.json(mealswithAvailableReservation)
-        return
-      }
     }
     else if ("title" in request.query) {
       const title = request.query.title.toLowerCase();
@@ -53,15 +39,57 @@ router.get("/", async (request, response) => {
       const limitedMeals = await knex("meals").limit(limit)
       response.json(limitedMeals);
     }
-    else {
-      const titles = await knex("meals").select("title");
-      response.json(titles);
-    }
-  }
+  /*  else if ("availableReservations" in request.query) {
+      const availableReservations = request.query.availableReservations;
+      if (availableReservations == "true") {
 
-  catch (error) {
-    response.status(500).send({ error: "Internal Server Error." });
-  }
+        const mealswithAvailableReservation = await knex("meals")
+          .select("meals.id", "meals.title", "meals.max_reservations ")
+          .sum({ total_reserved: 'reservations.number_of_guests' })
+          .leftJoin("reservations", "meals.id", "reservations.meal_id")
+          .groupBy("meals.title")
+          .having("meals.max_reservations", ">", "total_reserved")
+        response.json(mealswithAvailableReservation)
+        return
+      }
+    }*/
+    else if ("availableReservations" in request.query) {
+        let availableReservations =
+          request.query.availableReservations == "true";
+        if (availableReservations) {
+          filteredMeals = await knex("meals")
+          let availableMeal = await knex
+            .raw(
+              `
+      SELECT 
+      COALESCE(SUM(reservations.number_of_guests), 0) AS total_reservations,
+      meals.max_reservations,
+      meals.title,
+      meals.id
+  FROM
+      meals
+          LEFT JOIN
+      reservations ON reservations.meals_id = meals.id
+  GROUP BY meals.id
+  HAVING max_reservations > total_reservations;
+      
+      `
+            )
+            .then((res) => response.send(res[0]));
+          return;
+          response.json(availableMeal);
+        }
+      
+
+    }
+
+    else {
+      const meals = await knex("meals")
+      response.json(meals);
+    }
+  
+
+
 });
 
 router.get("/:id", async (request, response) => {
