@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-//import bg from "/public/images/bg.jpg";
 
 import "./App.css";
 import {
@@ -17,7 +16,6 @@ import CreateMeal from "./components/CreateMeal";
 
 function App() {
 
-    
   return (
     <Router>
     <div container="app-container">
@@ -37,7 +35,7 @@ function App() {
                 <Link to="/meals">Meals</Link>
                 </li>
                 <li>
-                <Link to="/host">Be a</Link>
+                <Link to="/host">Be a host</Link>
                 </li>
             </ul>
         </div>

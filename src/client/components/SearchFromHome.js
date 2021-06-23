@@ -21,12 +21,13 @@ const SearchFromHome = () => {
         }
     }, [debouceValue])
     console.log(query)
+    
     return (
     <>
         <div className="home-search">
             <input type="text" placeholder="search your meal"className="home_input"value={query} onChange={(e)=>setQuery(e.target.value)} />
             <ul>
-            {query && meals.map(meal=><li key={meal.id}>{meal.title}</li>)}
+            {query && meals.map(meal=><li key={meal.id} onClick={()=>setQuery(meal.title)}>{meal.title} </li>)}
        
             </ul>
         </div>
