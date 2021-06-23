@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
- import Forms from './Forms'
+ import ReservationForm from './ReservationForm'
 
 const CheckAvailableReservations = (props) => {
     console.log(props.mealId)
@@ -40,7 +40,7 @@ const CheckAvailableReservations = (props) => {
     return (
         <>
         <div className="common-container">       
-        {isReservationFormVisible && <Forms mealId={props.mealId}/>}
+        {isReservationFormVisible && <ReservationForm mealId={props.mealId}/>}
         </div>
 
         </>

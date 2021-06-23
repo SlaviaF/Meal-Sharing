@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-const Forms = (props) => {
+const RerservationForm = (props) => {
 
 console.log(props.mealId)
 const[custname, setCustName] = useState('name')
@@ -35,46 +35,61 @@ const onSubmit=(e)=>{
     })
    
 }
+if(guests < 0) {
+    alert("Please add a valid number")
+}
 
     return (
-      
-       <form onSubmit={onSubmit}>
-           <label htmlFor="name">Name</label>
-           <input type="text"
-                id="name"
-                placeholder="Enter your name"
-                value={custname}
-                onChange={(e)=>setCustName(e.target.value)}
-            />
+<div className="reservation-form">
+    <div className="form-container">
+    <h3>Reserve you meal here</h3>
 
+       <form onSubmit={onSubmit}>
+           <div className="form-group">
+            <label htmlFor="name">Name</label>
+            <input type="text"
+                    className="form-control"
+                    id="name"
+                    placeholder="Enter your name"
+                    value={custname}
+                    onChange={(e)=>setCustName(e.target.value)}
+                />
+            </div>
+            <div className="form-group">
             <label htmlFor="phone">Phone</label>
             <input type="number"
+                 className="form-control"
                 id="phone"
                 placeholder="Enter your mobile number"
                 value={phone}
                 onChange={(e)=>setPhone(e.target.value)}
             />
-
+            </div>
+            <div className="form-group">
             <label htmlFor="email">Email</label>
             <input type="email"
                 id="email"
+                className="form-control"
                 placeholder="Enter you email"
                 value={email}
                 onChange={(e)=>setEmail(e.target.value)}
             />
-
+            </div>
+            <div className="form-group">
             <label htmlFor="">Guest Count</label>
             <input type="number"
                 id="number_of_guests"
+                className="form-control"
                 placeholder="Enter guest count"
                 value={guests}
                 onChange={(e)=>setGuests(e.target.value)}
             />
+            </div>
             <button>Click</button>
        </form>
-  
-                 
+       </div>   
+       </div>             
     )
 }
 
-export default Forms
+export default RerservationForm

@@ -110,6 +110,7 @@ router.get("/:id", async (request, response) => {
 
 router.post("/", async (request, response) => {
   try {
+   console.log(request.body)
     const insertedMeal = await knex("meals")
       .insert({
         title: request.body.title,
@@ -121,10 +122,10 @@ router.post("/", async (request, response) => {
         created_date: request.body.created_date
       })
     response.json(insertedMeal)
-  } catch (error) {
+    } catch (error) {
     response.status(500).send({ error: "Internal Server Error." });
-  }
-});
+    }
+  });
 router.put("/:id", async (request, response) => {
   try {
     const mealId = parseInt(request.params.id);

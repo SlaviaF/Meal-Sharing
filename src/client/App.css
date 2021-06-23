@@ -1,10 +1,13 @@
 * {
     box-sizing: border-box;
+    margin:0;
+    padding:0;
 }
 /* appa*/
 .app-container{
-        padding: 0 10% 0 10%;
+    margin-right: 1em;
 }
+
 /* navbar */
 .nav-main{
     display:flex;
@@ -13,7 +16,7 @@
     align-items: center;
     background-color: rgb(0, 0, 0);
     padding: 0 5% 0 5%;
-    width:100vw;
+    width:100%;
     position:fixed;
     z-index: 1; 
     margin-top: 0;
@@ -62,26 +65,54 @@
 }
 
 .home{
-    background-image: url('/public/images/bg.jpg');
+    background-image: url('./assets/images/bg.jpg');
+    position:relative;
+}
+
+.position-input{
+    position:absolute;
+    top:25%;
+    right:10%;
 }
 
 .home h3{
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5em;
+    font-size: 1.8em;
 
 
 }
+.home_input:focus{
+    background-color: lightblue;
+
+}
+.home_input{
+    border:none;
+    border-radius: 5px;
+    width:15em;
+    padding:2px;
+    padding-left:4px;
+}
 
 /*about*/
+.common-bg{
+    background-image: url("./assets/images/about_bg.jpg");
+    background-position: center;
+    filter:brightness(120%);
+    
+}
 
+.about{
+    font-weight:bold;
+   
+}
 
 /*Meals*/
 
 
 .common-container{
-    width: 95%;
-    margin:0 auto;
-    padding:6em;
+    width: 100%;
+    margin:0;
+    padding:5em;
 
 }
 .meals-container h1{
@@ -93,9 +124,25 @@
     display:flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    margin-right:20px;
 
-    
+}
+.meals-container a{
+    color: black;
+    text-decoration: none;
 
+}
+
+.meals-container a:hover{
+    color:rgb(113, 115, 141);
+    text-decoration: none;
+}
+
+.meal-images{
+    width:400px;
+    height:300px;
+    border-radius: 2em;
+    padding-bottom:1em;
 }
 .meal_title{
     font-family: 'Dancing Script', cursive;
@@ -106,9 +153,9 @@
     padding-bottom: 0;
 }   
 .meal_items{
-    width:350px;
+    width:425px;
     margin-bottom:20px;
-    padding:2em;
+    padding:0.5em;
     box-shadow: 0 8px 9px -6px rgb(181, 174, 174);
 }
 
@@ -118,18 +165,134 @@
 
 }
 
+.heading{
+    font-weight: bold;
+    font-size:2em;
+    padding:0.1em
+}
+/*forms*/
+.form-container{
+    width:400px;
+    height:auto;
+    background-color: darkgrey;
+    padding:2em;
+    border-radius:1em;
+    box-shadow: 10px 5px 5px rgb(107, 102, 102);
 
-/*findMeal*/
-.findMeal{
-    color:black;
-    border:3px solid rgb(151, 16, 16);
-
-    height:100vh;
 }
 
-@media screen and (max-width: 600px) {
+
+/*single meal */
+.meal-container{
+    flex-direction: column;
+
+}
+.single-meal-container{
+    margin-top:2em;
+    display:flex;
+    justify-content:center;
+    align-items: self;
+
+}
+.single_meal_inner img{
+    width:500px;
+  
+}
+.single_meal{
+    display: flex;
+    padding:2em;
+    flex-direction: column;
+    width:600px;
+    border:1px solid rgb(172, 165, 165);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+.reservation-review-container{
+    display:flex;
+}
+
+.single_meal_inner{
+    width:100%;
+   
+
+}
+/*review form*/
+.review-button{
+    width:30%;
+    margin-left: 25px;
+
+}
+.review-form{
+    padding-top:5em;
+
+}
+
+/* search from home*/
+.home-search li{
+    width: 100%;
+    text-align: left;
+    font-weight:900;
+}
+
+@media screen and (max-width: 700px) {
+    .app-container{
+        margin-right:30px;
+}
     .center-content{
         padding-top: 40%;
         padding-right:20%;
     }
+ 
+    .brand-container{
+        width:400px;
+       flex:2;
+
+    }
+    .brand{
+        width:200px;
+        font-size:1.8em;
+    }
+
+    .nav-container{
+        flex:1;
+
+    }
+    .nav-ul{
+        display:flex;
+        flex-direction: column;
+        padding-left:200px;
+    }
+    .position-input{
+        position:absolute;
+        top:20%;
+        right:20%;
+    }
+
+    .about{
+        text-align:justify;
+        display:flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .reservation-review-container{
+        display: flex;
+        flex-direction: column;
+    }
+  
+   
+    .common-container{
+        padding-left: 2em;
+    }
+
+    .single_meal_inner img{
+        width:400px;
+        border-radius: 2em;
+      
+    }
+
+    .single_meal{
+        width:500px;
+    }
+ 
 }

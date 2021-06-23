@@ -12,7 +12,7 @@ import Meals from "./components/Meals"
 import About from "./components/About"
 import Home from "./components/Home"
 import Meal from "./components/Meal"
-import Reviews from "./components/Reviews"
+import CreateMeal from "./components/CreateMeal";
 
 
 function App() {
@@ -20,27 +20,29 @@ function App() {
     
   return (
     <Router>
-    <div className="nav-main">
-    <div className="brand-container">
-        <h1 className="brand">Meal Sharing App</h1>
-    </div>
-    <div className="nav-container">
-        <ul className="nav-ul">
-            <li>
+    <div container="app-container">
+        <div className="nav-main">
+            <div className="brand-container">
+                <h1 className="brand">Meal Sharing App</h1>
+            </div>
+        <div className="nav-container">
+            <ul className="nav-ul">
+                <li>
                 <Link to="/">Home</Link>
-            </li>
-            <li>
+                </li>
+                <li>
                 <Link to="/about">About</Link>
-            </li>
-            <li>
+                </li>
+                <li>
                 <Link to="/meals">Meals</Link>
-            </li>
-            <li>
-                <Link to="/reviews">Reviews</Link>
-            </li>
-        </ul>
+                </li>
+                <li>
+                <Link to="/host">Be a</Link>
+                </li>
+            </ul>
+        </div>
     </div>
-</div>
+    </div>
 
     <Switch>
         <Route exact path="/">
@@ -55,8 +57,8 @@ function App() {
         <Route exact path="/meals/:id">
             <Meal />
         </Route>
-        <Route path="/reviews">
-            <Reviews />
+        <Route exact path="/host">
+            <CreateMeal />
         </Route>
      </Switch>
 </Router>   
