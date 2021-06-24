@@ -24,6 +24,7 @@
 }
 
 
+
 .nav-ul{
     display:flex;
     flex-direction: row;
@@ -107,18 +108,37 @@
 }
 
 /*Meals*/
-
-
-.common-container{
-    width: 100%;
-    margin:0;
-    padding:5em;
+.meals_input{
+    width:30%;
+    padding:0.5em;
+    border-radius: 5px;
+    border: 2px solid grey;
 
 }
+.no_meal_message{
+    padding-top:2em;
+}
+.meals_input_container{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top:2em;
+
+}
+.meals_input:focus{
+    background-color: lightblue;
+
+}
+.common-container{
+    width: 100%;
+    padding:7em 5em 5em 5em;
+}
+
 .meals-container h1{
     padding-top:0;
     margin-top:0;
 }
+
 .meals-container{
     padding-top:5em;
     display:flex;
@@ -127,6 +147,7 @@
     margin-right:20px;
 
 }
+
 .meals-container a{
     color: black;
     text-decoration: none;
@@ -227,12 +248,20 @@
 
 }
 
+.star-radio{
+    display:none;
+}
+
 /* search from home*/
 .home-search li{
     width: 100%;
     text-align: left;
     font-weight:900;
 }
+
+
+/* host*/
+
 
 @media screen and (max-width: 700px) {
     .app-container{
