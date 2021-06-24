@@ -1,9 +1,6 @@
 import React, {useState} from 'react'
 
-
 const RerservationForm = (props) => {
-
-console.log(props.mealId)
 const[custname, setCustName] = useState('name')
 const[phone, setPhone] = useState('')
 const[email, setEmail] = useState('email@email.com')
@@ -28,12 +25,8 @@ const onSubmit=(e)=>{
             throw "Reservation not successfull. try again"
         }
         else{
-         //   setReservationInfo(data)
-            alert("Your reservation is done")
         }
-
     })
-   
 }
 if(guests < 0) {
     alert("Please add a valid number")

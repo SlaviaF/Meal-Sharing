@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react'
  import ReservationForm from './ReservationForm'
 
 const CheckAvailableReservations = (props) => {
-    console.log(props.mealId)
    const[reservations, setReservations] = useState([])
     const[loading, setLoading] = useState(true)
     const[isReservationFormVisible, setIsReservationFormVisible] = useState(false)
@@ -17,16 +16,14 @@ const CheckAvailableReservations = (props) => {
         console.log(availableReservations)
         setReservations(availableReservations)
         setLoading(false)
-    
+
     }
 
-   
      const getReservationForMeal = async() => {
             const reservationForMeal = await reservations.find(reservation=>reservation.id === Number(props.mealId))
             const total_reservations = await reservationForMeal.total_reservations
             const max_reservations = await reservationForMeal.max_reservations
-            console.log(total_reservations)
-            console.log(max_reservations)
+           
             if(max_reservations<=total_reservations){
                 setIsReservationFormVisible(false)
             }else {
@@ -34,12 +31,14 @@ const CheckAvailableReservations = (props) => {
             }
             return
         }
-    
+
         getReservationForMeal()
-                             
+
     return (
         <>
-        <div className="common-container">       
+        <div className="common-container">   
+        {loading && <div>Loading...</div>}    
+        {isReservationFormVisible === false && <div><h2>Sorry we have no revervations left for this meal. Try something else</h2></div>}
         {isReservationFormVisible && <ReservationForm mealId={props.mealId}/>}
         </div>
 
