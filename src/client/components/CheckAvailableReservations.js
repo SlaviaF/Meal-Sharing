@@ -21,13 +21,16 @@ const CheckAvailableReservations = (props) => {
 
      const getReservationForMeal = async() => {
             const reservationForMeal = await reservations.find(reservation=>reservation.id === Number(props.mealId))
-            const total_reservations = await reservationForMeal.total_reservations
-            const max_reservations = await reservationForMeal.max_reservations
-           
-            if(max_reservations<=total_reservations){
+            if(reservationForMeal === undefined){
                 setIsReservationFormVisible(false)
-            }else {
-                setIsReservationFormVisible(true)
+            }else{
+                const total_reservations = await reservationForMeal.total_reservations
+                const max_reservations = await reservationForMeal.max_reservations
+                if(max_reservations<=total_reservations){
+                    setIsReservationFormVisible(false)
+                }else {
+                    setIsReservationFormVisible(true)
+                }
             }
             return
         }
