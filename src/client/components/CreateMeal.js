@@ -35,15 +35,14 @@ const CreateMeal = () => {
             })
 }   
     return (
-        <div className="common-container">
+        <div className="common-container common-bg">
             <div className="center-content">
-
                 <div className="reservation-form">
                     <div className="form-container">
-                        <h3>Reserve you meal here</h3>
+                        <h3>Be a host</h3>
 
                 <form onSubmit={onSubmit}>
-                    <div className="form-group">
+                    <div className="form-group host-form">
                         <label htmlFor="title">Your Meal</label>
                         <input type="text"
                                 className="form-control"
