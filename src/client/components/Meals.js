@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import Meal from './Meal';
-import CreateMeal from './CreateMeal';
+import images from './images'
+import common from '../assets/images/common.png'
+
 import {
     BrowserRouter as Router,
     Route, 
@@ -47,12 +49,13 @@ const Meals = () => {
                 {error && <h2>{error}</h2>}
                 {loading && <div>Loading...</div>}
                         {meals.map(meal=>{
+                            const imageForMeal = images.find(img => img.id === meal.id)
                             return(
                                 <>
                                 <div key={meal.id} className="meal_items">
                                      <Link to={`${url}/${meal.id}`} >
                                     <div className="meal_display" > 
-                                    {meal.id > 18 ? <img src={`/public/images/19.png`} alt={meal.title} className="meal-images"/> : <img src={`/public/images/${meal.id}.png`} alt={meal.title} className="meal-images"/>}
+                                    {meal.id > 18 ? <img src={common} alt={meal.title} className="meal-images"/> : <img src={imageForMeal.img} alt={meal.title} className="meal-images"/>}
                                     <h5 className="meal_title">{meal.title}</h5>
                                     <p>Price: {meal.price}</p>
                                     <p>Location: {meal.location}</p>
