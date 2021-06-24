@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
 import CheckAvailableReservations from './CheckAvailableReservations';
 import ReviewForm from './ReviewForm';
+import images from './images'
+
 const Meal = () => {
     const [isReviewFormVisible, setIsReviewFormVisible] = useState(false)
     let {id} = useParams();
@@ -33,6 +35,10 @@ const Meal = () => {
         
     }, [])
 
+     
+    const imageForMeal = images.find(img => img.id == id)
+
+    
     return (
         <>
        <div className="common-container common-bg">
@@ -42,7 +48,7 @@ const Meal = () => {
            <div className="single_meal">
                {meal[0] &&  <div className="single_meal_inner"> 
                             <ul>
-                                <li><img src={`/public/images/${id}.png`} alt={meal.title}/></li> 
+                                <li><img src={imageForMeal.img} alt={meal.title}/></li> 
                                 <li className="heading">{meal[0].title}</li>
                                 <li>{meal[0].description}</li>
                                 <li>{meal[0].price}</li>
