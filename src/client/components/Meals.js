@@ -69,7 +69,7 @@ const Meals = () => {
                     <div key={meal.id} className="meal_items">
                       <Link to={`${url}/${meal.id}`}>
                         <div className="meal_display">
-                          {meal.id > 18 ? (
+                          {meal.id > 185 ? (
                             <img
                               src={common}
                               alt={meal.title}
@@ -98,7 +98,7 @@ const Meals = () => {
                     <div key={meal.id} className="meal_items">
                       <Link to={`${url}/${meal.id}`}>
                         <div className="meal_display">
-                          {meal.id > 18 ? (
+                          {meal.id > 185 ? (
                             <img
                               src={common}
                               alt={meal.title}
