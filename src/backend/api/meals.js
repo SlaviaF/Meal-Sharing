@@ -3,7 +3,7 @@ const router = express.Router();
 const knex = require("../database");
 
 router.get("/", async (request, response) => {
-try{
+
   if ("maxPrice" in request.query) {
     const maxPrice = parseFloat(request.query.maxPrice)
     if (isNaN(maxPrice)) {
@@ -88,11 +88,7 @@ HAVING max_reservations > total_reservations;
       const meals = await knex("meals")
       response.json(meals);
     }
-  }
-  catch(error){
-    console.log(error)
-  }
-  
+
 
 
 });

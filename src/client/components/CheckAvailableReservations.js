@@ -4,16 +4,15 @@ import ReservationForm from "./ReservationForm";
 const CheckAvailableReservations = (props) => {
   const [reservations, setReservations] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isReservationFormVisible, setIsReservationFormVisible] = useState(false);
+  const [isReservationFormVisible, setIsReservationFormVisible] =
+    useState(false);
   useEffect(() => {
     fetchAvailableReservations();
   }, []);
 
   const fetchAvailableReservations = async () => {
     setLoading(true);
-    const response = await fetch(
-      "/api/meals?availableReservations=true"
-    );
+    const response = await fetch("/api/meals?availableReservations=true");
     const availableReservations = await response.json();
     console.log(availableReservations);
     setReservations(availableReservations);
@@ -47,7 +46,8 @@ const CheckAvailableReservations = (props) => {
         {isReservationFormVisible === false && (
           <div className="reservation-full-msg">
             <h3>
-              Sorry we have no revervations left for this meal. Try something else
+              Sorry we have no revervations left for this meal. Try something
+              else
             </h3>
           </div>
         )}

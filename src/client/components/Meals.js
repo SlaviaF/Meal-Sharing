@@ -33,10 +33,10 @@ const Meals = () => {
       setError(error.message);
     }
   };
+
   const filteredMeals = meals.filter((meal) =>
     meal.title.toLowerCase().includes(query.toLowerCase())
   );
-
   return (
     <>
       <div className="common-container">
@@ -64,12 +64,14 @@ const Meals = () => {
           {query
             ? filteredMeals.map((meal) => {
                 const imageForMeal = images.find((img) => img.id === meal.id);
+                console.log(images)
+                console.log(imageForMeal)
                 return (
                   <>
                     <div key={meal.id} className="meal_items">
                       <Link to={`${url}/${meal.id}`}>
                         <div className="meal_display">
-                          {meal.id > 185 ? (
+                          {meal.id > 175 ? (
                             <img
                               src={common}
                               alt={meal.title}
@@ -98,7 +100,7 @@ const Meals = () => {
                     <div key={meal.id} className="meal_items">
                       <Link to={`${url}/${meal.id}`}>
                         <div className="meal_display">
-                          {meal.id > 185 ? (
+                          {meal.id > 175 ? (
                             <img
                               src={common}
                               alt={meal.title}

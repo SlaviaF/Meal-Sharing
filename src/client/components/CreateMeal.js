@@ -25,7 +25,6 @@ const CreateMeal = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log({ data });
         if (!data) {
           alert("You meal was not created");
         } else {
@@ -50,6 +49,7 @@ const CreateMeal = () => {
                   placeholder="Enter your dish"
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -60,6 +60,7 @@ const CreateMeal = () => {
                   placeholder="Describe in short"
                   value={description}
                   onChange={(e) => setDescription(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -71,6 +72,7 @@ const CreateMeal = () => {
                   placeholder="Enter you location"
                   value={location}
                   onChange={(e) => setLocation(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -81,6 +83,7 @@ const CreateMeal = () => {
                   id="eventday"
                   value={eventDate}
                   onChange={(e) => setEventDate(e.target.value)}
+                  required
                 />
               </div>
               <div className="form-group">
@@ -92,6 +95,7 @@ const CreateMeal = () => {
                   placeholder="How many guest"
                   value={maxReservations}
                   onChange={(e) => setMaxReservations(e.target.value)}
+                  required
                 />
               </div>
 
@@ -104,6 +108,7 @@ const CreateMeal = () => {
                   placeholder="Price"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
+                  required
                 />
               </div>
               <button>Click</button>

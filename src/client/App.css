@@ -323,7 +323,7 @@
   width: 400px;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 600px) {
   .center-content {
     padding-top: 40%;
     padding-right: 15%;
@@ -346,14 +346,18 @@
     display: flex;
     flex-direction: column;
     padding-top: 10px;
-    padding-left: 170px;
+    padding-right: 12%;
   }
   .position-input {
     position: absolute;
     top: 20%;
     right: 20%;
+    left:18%;
+    padding-bottom: 10%;
   }
-
+ .home_input{
+   margin-bottom: 1em;
+ }
   .about {
     text-align: justify;
     padding: 0 20%;

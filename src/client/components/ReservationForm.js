@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFormVisible, singleMeal}) => {
-  const [custname, setCustName] = useState("name");
+  const [custname, setCustName] = useState("");
   const [phone, setPhone] = useState("");
-  const [email, setEmail] = useState("email@email.com");
+  const [email, setEmail] = useState("");
   const [guests, setGuests] = useState("");
 
   const onSubmit = (e) => {
+ 
     e.preventDefault();
     fetch("/api/reservations", {
       method: "POST",
@@ -24,10 +25,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
           throw "Reservation not successfull. try again";
         } else {
           alert("Your reservation is complete");
-          setCustName("");
-          setPhone("");
-          setEmail("");
-          setGuests("");
+        
         }
       });
   };
@@ -56,6 +54,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
             placeholder="Enter your name"
             value={custname}
             onChange={(e) => setCustName(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -67,6 +66,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
             placeholder="Enter your mobile number"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -78,6 +78,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
             placeholder="Enter you email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
         </div>
         <div className="form-group">
@@ -89,6 +90,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
             placeholder="Enter guest count"
             value={guests}
             onChange={(e) => setGuests(e.target.value)}
+            required
           />
         </div>
         <button>Click</button>
