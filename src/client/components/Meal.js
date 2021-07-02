@@ -1,15 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { TiArrowBack } from "react-icons/ti"
 import { useParams } from "react-router-dom";
-import { useHistory } from "react-router-dom";
-import CheckAvailableReservations from "./CheckAvailableReservations";
-import ReviewForm from "./ReviewForm";
+import ReviewReservationVisibility from "./ReviewReservationVisibility";
 import images from "./images";
 
 const Meal = () => {
-  const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
-  const [isReservationFormVisible, setIsReservationFormVisible] = useState(false);
-  const history = useHistory();
   const [error, setError] = useState(null);
   let { id } = useParams();
   const [meal, setMeal] = useState([]);
@@ -18,6 +12,7 @@ const Meal = () => {
   const fetchMealWithId = async () => {
     try {
       setLoading(true);
+      setError(null);
       const response = await fetch(`/api/meals/${id}`);
       if (!response.ok) {
         const message = `An error has occured : ${response.statusText}`;
@@ -58,7 +53,7 @@ const Meal = () => {
               )}
               <div className="desc-container">
                 <div>
-                  <div>
+                  <div className="inner-desc">
                     <strong>{singleMeal && singleMeal.title}</strong>
                   </div>
                   <br />
@@ -69,51 +64,8 @@ const Meal = () => {
                     </strong>
                   </div>
                 </div>
-                <div className="btn-container">
-                  <button
-                    onClick={() => {
-                      setIsReviewFormVisible(!isReviewFormVisible);
-                    }}
-                  >
-                    Review this meal
-                  </button>
-                  <button
-                    onClick={() => {
-                      setIsReservationFormVisible(!isReservationFormVisible);
-                    }}
-                  >
-                    Reserve this meal
-                  </button>
-              
-                </div>
-                <div>
-                  <button className="goBackBtn" onClick={()=>history.goBack()}>Go Back<TiArrowBack size={20} color={"blue"}/></button>
-
-                  </div>
+                <ReviewReservationVisibility id={id} singleMeal={singleMeal} />
               </div>
-            </div>
-          </div>
-          <div className="reser-review coontainer">
-            <div className="review-container">
-              {isReviewFormVisible && (
-                <div className="review-form">
-                  <ReviewForm
-                    mealId={id}
-                    isReviewFormVisible={isReviewFormVisible}
-                    setIsReviewFormVisible={setIsReviewFormVisible}
-                  />
-                </div>
-              )}
-            </div>
-            <div className="reservation-container">
-              {isReservationFormVisible && (
-                <CheckAvailableReservations
-                  mealId={id}
-                  isReservationFormVisible={isReservationFormVisible}
-                  setIsReservationFormVisible={setIsReservationFormVisible}
-                  singleMeal={singleMeal}
-                />
-              )}
             </div>
           </div>
         </div>

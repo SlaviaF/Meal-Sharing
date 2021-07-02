@@ -42,7 +42,7 @@ const SearchFromHome = () => {
           {query &&
             meals.map((meal) => (
               <li key={meal.id} onClick={() => setQuery(meal.title)}>
-                {meal.title}{" "}
+                {meal.title}
               </li>
             ))}
         </ul>

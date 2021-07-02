@@ -25,7 +25,10 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
           throw "Reservation not successfull. try again";
         } else {
           alert("Your reservation is complete");
-        
+          setCustName("")
+          setPhone("")
+          setEmail("")
+          setGuests("")
         }
       });
   };

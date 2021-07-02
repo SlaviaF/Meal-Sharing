@@ -29,7 +29,14 @@ const CreateMeal = () => {
           alert("You meal was not created");
         } else {
           alert("Thank you for being a part of our meal sharing community");
+          setTitle("")
+          setDescription("")
+          setLocation("")
+          setMaxReservations("")
+          setPrice("")
+          setEventDate("")
         }
+
       });
   };
   return (
@@ -40,7 +47,7 @@ const CreateMeal = () => {
             <h3>Be a host</h3>
 
             <form onSubmit={onSubmit}>
-              <div className="form-group host-form">
+              <div className="form-group">
                 <label htmlFor="title">Your Meal</label>
                 <input
                   type="text"

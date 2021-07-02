@@ -14,7 +14,6 @@ const CheckAvailableReservations = (props) => {
     setLoading(true);
     const response = await fetch("/api/meals?availableReservations=true");
     const availableReservations = await response.json();
-    console.log(availableReservations);
     setReservations(availableReservations);
     setLoading(false);
   };
@@ -23,7 +22,7 @@ const CheckAvailableReservations = (props) => {
     const reservationForMeal = await reservations.find(
       (reservation) => reservation.id === Number(props.mealId)
     );
-    if (reservationForMeal === undefined) {
+   if (reservationForMeal === undefined) {
       setIsReservationFormVisible(false);
     } else {
       const total_reservations = await reservationForMeal.total_reservations;
@@ -43,14 +42,7 @@ const CheckAvailableReservations = (props) => {
     <>
       <div className="common-container">
         {loading && <div>Loading...</div>}
-        {isReservationFormVisible === false && (
-          <div className="reservation-full-msg">
-            <h3>
-              Sorry we have no revervations left for this meal. Try something
-              else
-            </h3>
-          </div>
-        )}
+        
         {isReservationFormVisible && (
           <ReservationForm
             mealId={props.mealId}
@@ -58,6 +50,14 @@ const CheckAvailableReservations = (props) => {
             setIsReservationFormVisible={props.setIsReservationFormVisible}
             singleMeal={props.singleMeal}
           />
+        )}
+        {isReservationFormVisible == false && (
+          <div className="reservation-full-msg">
+            <h3>
+              Sorry we have no revervations left for this meal. Try something
+              else
+            </h3>
+          </div>
         )}
       </div>
     </>
