@@ -29,6 +29,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
           setPhone("")
           setEmail("")
           setGuests("")
+          setIsReservationFormVisible(!isReservationFormVisible)
         }
       });
   };
@@ -37,7 +38,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
   }
 
   return (
-    <div className="form-container">
+    <div className="form-container reservation-form-container">
       <h3>
         Reserve <strong>{singleMeal.title}</strong> here
       </h3>
@@ -96,7 +97,7 @@ const RerservationForm = ({mealId, isReservationFormVisible, setIsReservationFor
             required
           />
         </div>
-        <button>Click</button>
+        <button>Reserve</button>
       </form>
     </div>
   );

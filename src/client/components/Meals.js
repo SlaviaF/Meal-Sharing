@@ -95,7 +95,7 @@ const Meals = () => {
                           />
                         )}
                         <h5 className="meal_title">{meal.title}</h5>
-                        <p>Price: {meal.price}</p>
+                        <p>Price: {(meal.price).split(".").join(",")} kr</p>
                         <p>Location: {meal.location}</p>
                       </div>
                     </Link>

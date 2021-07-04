@@ -24,7 +24,7 @@ const useApiRequest = (url, options) => {
             }
         }
         fetchData()
-    }, [])
+    }, [url])
 
    
     return {error, isLoading, data}

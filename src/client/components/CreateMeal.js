@@ -5,7 +5,7 @@ const CreateMeal = () => {
   const [description, setDescription] = useState("");
   const [location, setLocation] = useState("");
   const [maxReservations, setMaxReservations] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [eventDate, setEventDate] = useState(eventday);
   let eventday = new Date().toISOString().slice(0, -8);
 
@@ -42,8 +42,8 @@ const CreateMeal = () => {
   return (
     <div className="common-container common-bg">
       <div className="center-content">
-        <div className="reservation-form">
-          <div className="form-container host">
+        <div className="host-form">
+          <div className="host">
             <h3>Be a host</h3>
 
             <form onSubmit={onSubmit}>
@@ -118,7 +118,7 @@ const CreateMeal = () => {
                   required
                 />
               </div>
-              <button>Click</button>
+              <button>Confirm</button>
             </form>
           </div>
         </div>

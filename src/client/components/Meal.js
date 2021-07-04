@@ -60,7 +60,7 @@ const Meal = () => {
                   <div>{singleMeal && singleMeal.description}</div> <br />
                   <div>
                     <strong>
-                      {singleMeal && `Price: ${singleMeal.price} DKK`}
+                      {singleMeal && `Price: ${(singleMeal.price).split(".").join(",")} kr`}
                     </strong>
                   </div>
                 </div>

@@ -28,6 +28,7 @@ const ReviewForm = ({ mealId, isReviewFormVisible,setIsReviewFormVisible}) => {
           setTitle("");
           setDescription("");
           setStars("");
+          setIsReviewFormVisible(!isReviewFormVisible)
         }
       });
 
@@ -84,6 +85,7 @@ const ReviewForm = ({ mealId, isReviewFormVisible,setIsReviewFormVisible}) => {
                 onClick={() => setStars(ratingValue)}
               />
               <FaStar
+              className="star-size"
                 size={50}
                 color={ratingValue <= stars ? "yellow" : "grey"}
               />
