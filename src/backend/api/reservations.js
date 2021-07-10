@@ -14,7 +14,8 @@ router.get("/", async (request, response) => {
 })
 
 router.post("/", async (request, response) => {
-    try {
+   // try {
+        console.log(request.body)
         const insertedReservations = await knex("reservations")
             .insert({
                 number_of_guests: request.body.number_of_guests,
@@ -22,12 +23,14 @@ router.post("/", async (request, response) => {
                 contact_phonenumber: request.body.contact_phonenumber,
                 contact_name: request.body.contact_name,
                 contact_email: request.body.contact_email,
-                meal_id: request.body.meal_id,
+                meals_id: request.body.meals_id,
             })
         response.json(insertedReservations)
-    } catch (error) {
-        response.status(500).send({ error: "Internal Server Error." });
-    }
+  //  } catch (error) {
+       // response.status(500).send({ error: "Internal Server Error." });
+   // }
+
+   console.log({insertedReservations})
 })
 
 
@@ -60,7 +63,7 @@ router.put("/:id", async (request, response) => {
                 contact_phonenumber: request.body.contact_phonenumber,
                 contact_name: request.body.contact_name,
                 contact_email: request.body.contact_email,
-                meal_id: request.body.meal_id,
+                meals_id: request.body.meals_id,
             })
         response.json(updateReservation);
     } catch (error) {
