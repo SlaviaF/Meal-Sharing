@@ -41,7 +41,7 @@ const ReviewForm = ({ mealId, isReviewFormVisible,setIsReviewFormVisible}) => {
     <div className="form-container">
       <form onSubmit={onSubmit}>
         <button
-          className="closeIcon"
+          className="closeIcon btn"
           onClick={() => setIsReviewFormVisible(!isReviewFormVisible)}
         >
           X

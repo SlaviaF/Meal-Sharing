@@ -325,6 +325,7 @@
   position: absolute;
   top: 1em;
   right: 2em;
+  z-index: 1;
 }
 /*review form*/
 .star-radio {
@@ -428,11 +429,11 @@
   }
   .reservation-container {
     position: absolute;
-    width: 29em;
-    top:84%;
-    bottom:20px;
-    left:-18%;
-  }
+    width: 30em;
+    top: 90%;
+    bottom: 20px;
+    left: -20%;}
+
   .reservation-review-container {
     display: flex;
     flex-direction: column;
@@ -466,7 +467,6 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-right: 25px;
   }
 
 .heading{
@@ -481,14 +481,13 @@
 .inner-desc{
   display: none;
 }
-  .review-container {
+.review-container {
     position: absolute;
     top: 90%;
-    right: 5%;
-    left: 2%;
-    width:360px;
- 
- }
+    right: 6;
+    left: 6%;
+    width: 23em;
+}
  
  .meal_items{
    width:600px;

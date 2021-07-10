@@ -21,7 +21,7 @@ function App() {
     <div container="app-container">
         <div className="nav-main">
             <div className="brand-container">
-                <h1 className="brand">Meal Sharing App</h1>
+                <h1 className="brand">Meal Sharing App - by Slavia</h1>
             </div>
         <div className="nav-container">
             <ul className="nav-ul">
