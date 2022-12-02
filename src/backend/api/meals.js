@@ -1,67 +1,96 @@
 const express = require("express");
-const { on } = require("../database");
 const router = express.Router();
 const knex = require("../database");
 
 router.get("/", async (request, response) => {
-  try {
-    if ("maxPrice" in request.query) {
-      const maxPrice = parseFloat(request.query.maxPrice)
-      if (isNaN(maxPrice)) {
-        response.status(400).json({ error: "maxPrice must be an integer" })
-        return
-      }
-      const MaxPriceMeals = await knex('meals')
-        .where("price", "<=", maxPrice)
-      response.json(MaxPriceMeals);
+
+  if ("maxPrice" in request.query) {
+    const maxPrice = parseFloat(request.query.maxPrice)
+    if (isNaN(maxPrice)) {
+      response.status(400).json({ error: "maxPrice must be an integer" })
       return
     }
-    else if ("availableReservations" in request.query) {
-      const availableReservations = request.query.availableReservations;
-      if (availableReservations == "true") {
+    const MaxPriceMeals = await knex('meals')
+      .where("price", "<=", maxPrice)
+    response.json(MaxPriceMeals);
+    return
+  }
+  else if ("title" in request.query) {
+    const title = request.query.title.toLowerCase();
+    const matchTitle = await knex("meals")
+      .where("meals.title", "like", "%" + title + "%");
+    response.json(matchTitle);
+  }
 
-        const mealswithAvailableReservation = await knex("meals")
-          .select("meals.id", "meals.title", "meals.max_reservations ")
-          .sum({ total_reserved: 'reservations.number_of_guests' })
-          .leftJoin("reservations", "meals.id", "reservations.meal_id")
-          .groupBy("meals.title")
-          .having("meals.max_reservations", ">", "total_reserved")
-        response.json(mealswithAvailableReservation)
-        return
+  else if ("createdAfter" in request.query) {
+    const createdAfter = new Date(request.query.createdAfter);
+    if (!createdAfter.getDate()) {
+      response.status(400).json({ error: "createdAfter should a valid date" })
+    }
+    const concertDate = await knex("meals").
+      where("created_date", ">=", createdAfter)
+    response.json(concertDate)
+  }
+
+  else if ("limit" in request.query) {
+    const limit = request.query.limit
+    console.log(limit);
+    const limitedMeals = await knex("meals").limit(limit)
+    response.json(limitedMeals);
+  }
+/*  else if ("availableReservations" in request.query) {
+    const availableReservations = request.query.availableReservations;
+    if (availableReservations == "true") {
+
+      const mealswithAvailableReservation = await knex("meals")
+        .select("meals.id", "meals.title", "meals.max_reservations ")
+        .sum({ total_reserved: 'reservations.number_of_guests' })
+        .leftJoin("reservations", "meals.id", "reservations.meal_id")
+        .groupBy("meals.title")
+        .having("meals.max_reservations", ">", "total_reserved")
+      response.json(mealswithAvailableReservation)
+      return
+    }
+  }*/
+  else if ("availableReservations" in request.query) {
+      let availableReservations =
+        request.query.availableReservations == "true";
+      if (availableReservations) {
+        filteredMeals = await knex("meals")
+        let availableMeal = await knex
+          .raw(
+            `
+    SELECT 
+    COALESCE(SUM(reservations.number_of_guests), 0) AS total_reservations,
+    meals.max_reservations,
+    meals.title,
+    meals.id
+FROM
+    meals
+        LEFT JOIN
+    reservations ON reservations.meals_id = meals.id
+GROUP BY meals.id
+HAVING max_reservations > total_reservations;
+    
+    `
+          )
+          .then((res) => response.send(res[0]));
+        return;
+        response.json(availableMeal);
       }
-    }
-    else if ("title" in request.query) {
-      const title = request.query.title.toLowerCase();
-      const matchTitle = await knex("meals")
-        .where("meals.title", "like", "%" + title + "%");
-      response.json(matchTitle);
-    }
+  }
 
-    else if ("createdAfter" in request.query) {
-      const createdAfter = new Date(request.query.createdAfter);
-      if (!createdAfter.getDate()) {
-        response.status(400).json({ error: "createdAfter should a valid date" })
-      }
-      const concertDate = await knex("meals").
-        where("created_date", ">=", createdAfter)
-      response.json(concertDate)
-    }
+    
 
-    else if ("limit" in request.query) {
-      const limit = request.query.limit
-      console.log(limit);
-      const limitedMeals = await knex("meals").limit(limit)
-      response.json(limitedMeals);
-    }
+
+
     else {
-      const titles = await knex("meals").select("title");
-      response.json(titles);
+      const meals = await knex("meals")
+      response.json(meals);
     }
-  }
 
-  catch (error) {
-    response.status(500).send({ error: "Internal Server Error." });
-  }
+
+
 });
 
 router.get("/:id", async (request, response) => {
@@ -82,6 +111,7 @@ router.get("/:id", async (request, response) => {
 
 router.post("/", async (request, response) => {
   try {
+   console.log(request.body)
     const insertedMeal = await knex("meals")
       .insert({
         title: request.body.title,
@@ -93,10 +123,10 @@ router.post("/", async (request, response) => {
         created_date: request.body.created_date
       })
     response.json(insertedMeal)
-  } catch (error) {
+    } catch (error) {
     response.status(500).send({ error: "Internal Server Error." });
-  }
-});
+    }
+  });
 router.put("/:id", async (request, response) => {
   try {
     const mealId = parseInt(request.params.id);

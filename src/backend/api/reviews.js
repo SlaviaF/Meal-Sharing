@@ -14,19 +14,20 @@ router.get("/", async (request, response) => {
 })
 
 router.post("/", async (request, response) => {
-    try {
+ //   try {
+        console.log(request.body)
         const insertedReviews = await knex("reviews")
             .insert({
                 title: request.body.title,
                 description: request.body.description,
-                meal_id: request.body.meal_id,
+                meals_id: request.body.meals_id,
                 stars: request.body.stars,
-                created_date: request.body.created_date,
+                created_date: request.body.created_date
             })
         response.json(insertedReviews);
-    } catch (error) {
-        response.status(500).send({ error: "Internal Server Error." });
-    }
+  //  } catch (error) {
+   //     response.status(500).send({ error: "Internal Server Error." });
+  //  }
 })
 
 router.get("/:id", async (request, response) => {
